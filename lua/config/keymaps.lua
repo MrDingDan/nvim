@@ -12,16 +12,27 @@ vim.keymap.set("n", "<leader>wh", "<C-w>b<C-w>H", { noremap = false, silent = tr
 vim.keymap.set("n", "<leader>wv", "<C-w>b<C-w>K", { noremap = false, silent = true, desc = "AllVertical" })
 vim.keymap.set("n", "<leader>h", ":vs<CR>", { noremap = false, silent = true, desc = ":vs" })
 vim.keymap.set("n", "<leader>v", ":sp<CR>", { noremap = false, silent = true, desc = ":sp" })
-vim.keymap.set("n", "d", "<C-d>", { noremap = true, silent = true, desc = "fanye" })
+-- vim.keymap.set("n", "d", "<C-d>", { noremap = true, silent = true, desc = "fanye" })
+-- 映射 'cL' 为 'c$'，在操作符等待模式下移动到行尾
+vim.api.nvim_set_keymap("o", "L", "$", { noremap = true })
+
+-- 映射 'cH' 为 'c^'，在操作符等待模式下移动到行首
+vim.api.nvim_set_keymap("o", "H", "^", { noremap = true })
+
+vim.api.nvim_set_keymap("n", "d", '<cmd>call smoothie#do("\\<C-D>")<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "u", '<cmd>call smoothie#do("\\<C-U>")<CR>', { noremap = true, silent = true })
+vim.keymap.set("n", "<C-a>", "mmggVG", { noremap = false, silent = true, desc = "allSelected" })
 vim.keymap.set("n", "<C-d>", "d", { noremap = false, silent = true, desc = "shanchu" })
 vim.keymap.set("n", "<C-z>", "u", { noremap = true, silent = true, desc = "chexiao" })
-vim.keymap.set("n", "u", "<C-u>", { noremap = true, silent = true, desc = "xiangxiafanye" })
+-- vim.keymap.set("n", "u", "<C-u>", { noremap = true, silent = true, desc = "xiangxiafanye" })
 vim.keymap.set(
   "n",
-  "<leader>i",
-  [[:execute "normal! f\"vi\"" <CR>]],
-  { noremap = true, silent = true, desc = "selectQuota" }
+  "<leader>m",
+  "<Plug>(VM-Add-Cursor-At-Pos) ",
+  { noremap = true, silent = true, desc = "createCursor" }
 )
+vim.keymap.set("n", "<leader>i", "vi", { noremap = true, silent = true, desc = "Prefix i with Leader" })
+
 vim.keymap.set({ "n", "v" }, "H", "^", { noremap = true, silent = true, desc = "hangshou" })
 vim.keymap.set({ "n", "v" }, "L", "$", { noremap = true, silent = true, desc = "hangwei" })
 
@@ -87,7 +98,7 @@ function CompileRunGcc()
     vim.cmd([[
             set splitbelow
             sp
-            term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
+            term node %
         ]])
   elseif filetype == "racket" then
     vim.cmd([[

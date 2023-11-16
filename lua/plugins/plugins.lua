@@ -13,6 +13,13 @@ return {
     end,
   },
   {
+    "psliwka/vim-smoothie",
+    config = function()
+      vim.cmd("let g:smoothie_speed_linear_factor=33")
+      vim.cmd("let g:smoothie_speed_exponentiation_factor=0.55")
+    end,
+  },
+  {
     "wfxr/minimap.vim",
     build = "cargo install --locked code-minimap",
     lazy = false,

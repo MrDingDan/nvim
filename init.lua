@@ -1,6 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
+
 -- vim.g.python3_host_prog = "D:\\Programming\\PackageManager\\Acaconda\\python.exe"
 local im_select_exe = "D:\\BaiduSyncdisk\\Downloads\\im-select.exe"
 local english_im = "1033"
@@ -41,7 +42,7 @@ vim.api.nvim_create_autocmd("VimLeave", {
   callback = switch_to_default_im,
 })
 
-vim.o.timeoutlen = 50
+vim.o.timeoutlen = 25
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
